@@ -1,20 +1,23 @@
-Reproducible analytical workflow template
-================
+---
+title: "Reproducible analytical workflow template"
+output:
+  github_document:
+    toc: false
+    html_preview: false
+---
 
 <p align="left">
-
-<strong><a href="README.md">Home</a></strong> \|
-<strong><a href="R/README.md">R code</a></strong> \|
-<strong><a href="scripts/README.md">Scripts</a></strong> \|
-<strong><a href="config/README.md">Config</a></strong> \|
-<strong><a href="metadata/README.md">Metadata</a></strong> \|
-<strong><a href="data/README.md">Data</a></strong> \|
-<strong><a href="outputs/README.md">Outputs</a></strong> \|
+<strong><a href="README.md">Home</a></strong> |
+<strong><a href="R/README.md">R code</a></strong> |
+<strong><a href="scripts/README.md">Scripts</a></strong> |
+<strong><a href="config/README.md">Config</a></strong> |
+<strong><a href="metadata/README.md">Metadata</a></strong> |
+<strong><a href="data/README.md">Data</a></strong> |
+<strong><a href="outputs/README.md">Outputs</a></strong> |
 <strong><a href="docs/README.md">Docs</a></strong>
 </p>
 
 <p>
-
 <img style="float: left;" alt="IMARPE logo" src="assets/img/imarpe.png" width="28%" height="28%" hspace="0" />
 
 <img style="float: right;" alt="DIPEL-IMARPE logo" src="assets/img/dipel.png" width="18%" height="18%" hspace="120" />
@@ -24,14 +27,9 @@ Reproducible analytical workflow template
 
 # Reproducible analytical workflow template
 
-This repository provides a standard template for reproducible analytical
-workflows developed under the **Dirección de Investigaciones del
-Subsistema Pelágico – Instituto del Mar del Perú (DIPEL-IMARPE)**.
+This repository provides a standard template for reproducible analytical workflows developed under the **Dirección de Investigaciones del Subsistema Pelágico – Instituto del Mar del Perú (DIPEL-IMARPE)**.
 
-The template is designed for technical analyses involving pelagic
-resources, fisheries indicators, survey data, stock assessment inputs,
-spatial-temporal analyses, statistical models, and reproducible
-scientific outputs.
+The template is designed for technical analyses involving pelagic resources, fisheries indicators, survey data, stock assessment inputs, spatial-temporal analyses, statistical models, and reproducible scientific outputs.
 
 A repository created from this template should allow users to:
 
@@ -42,7 +40,7 @@ A repository created from this template should allow users to:
 - document the computational environment;
 - audit the relationship between data, code, outputs, and reports.
 
-------------------------------------------------------------------------
+---
 
 ## Repository purpose
 
@@ -50,8 +48,7 @@ This template is intended for repositories classified as:
 
 **Analytical process**
 
-That is, repositories that reproduce a complete technical analysis from
-documented inputs to validated outputs.
+That is, repositories that reproduce a complete technical analysis from documented inputs to validated outputs.
 
 Examples include:
 
@@ -65,11 +62,11 @@ Examples include:
 - model diagnostics;
 - stock-assessment input preparation.
 
-------------------------------------------------------------------------
+---
 
 ## Directory structure
 
-``` text
+```text
 ├── README.md / README.Rmd        : Main description of the repository
 ├── analysis-template.Rproj       : RStudio project file
 ├── _targets.R                    : Main reproducible pipeline
@@ -138,13 +135,13 @@ Examples include:
     └── devcontainer.json
 ```
 
-------------------------------------------------------------------------
+---
 
 ## Workflow logic
 
 This template separates three levels of work:
 
-``` text
+```text
 R/         = reusable functions
 scripts/   = sequential analytical scripts
 _targets.R = formal reproducible pipeline
@@ -152,7 +149,7 @@ _targets.R = formal reproducible pipeline
 
 The recommended analytical sequence is:
 
-``` text
+```text
 00_init.R
 01_import.R
 02_clean.R
@@ -163,53 +160,51 @@ The recommended analytical sequence is:
 99_render.R
 ```
 
-This sequence is intended for manual review, teaching, debugging, and
-transparent inspection.
+This sequence is intended for manual review, teaching, debugging, and transparent inspection.
 
 The formal pipeline is controlled by:
 
-``` text
+```text
 _targets.R
 ```
 
-This file defines the dependency graph of the analysis and allows the
-full workflow to be regenerated in a controlled and auditable way.
+This file defines the dependency graph of the analysis and allows the full workflow to be regenerated in a controlled and auditable way.
 
-------------------------------------------------------------------------
+---
 
 ## How to run the analysis
 
 ### 1. Restore the R environment
 
-``` r
+```r
 renv::restore()
 ```
 
 ### 2. Run the reproducible pipeline
 
-``` r
+```r
 targets::tar_make()
 ```
 
 ### 3. Render the main technical report
 
-``` r
+```r
 quarto::quarto_render("index.qmd")
 ```
 
 ### 4. Render the audit report
 
-``` r
+```r
 quarto::quarto_render("audit.qmd")
 ```
 
-------------------------------------------------------------------------
+---
 
 ## Alternative sequential execution
 
 For step-by-step execution:
 
-``` r
+```r
 source("scripts/00_init.R")
 source("scripts/01_import.R")
 source("scripts/02_clean.R")
@@ -220,27 +215,23 @@ source("scripts/06_export.R")
 source("scripts/99_render.R")
 ```
 
-This mode is useful during development, but official outputs should be
-generated through the reproducible pipeline.
+This mode is useful during development, but official outputs should be generated through the reproducible pipeline.
 
-------------------------------------------------------------------------
+---
 
 ## Description
 
 ### R
 
-The `R/` directory contains reusable functions used by the analytical
-workflow.
+The `R/` directory contains reusable functions used by the analytical workflow.
 
-Functions should be written as modular units and should avoid hard-coded
-paths. Each function should have a clear purpose, explicit inputs, and
-explicit outputs.
+Functions should be written as modular units and should avoid hard-coded paths. Each function should have a clear purpose, explicit inputs, and explicit outputs.
 
 Further details are available in:
 
-[R code documentation](R/README.md)
+[ R code documentation ](R/README.md)
 
-------------------------------------------------------------------------
+---
 
 ### Scripts
 
@@ -248,7 +239,7 @@ The `scripts/` directory contains the sequential analytical workflow.
 
 Scripts must be numbered according to their execution order:
 
-``` text
+```text
 00_init.R
 01_import.R
 02_clean.R
@@ -259,24 +250,21 @@ Scripts must be numbered according to their execution order:
 99_render.R
 ```
 
-Each script should call functions from `R/` rather than containing all
-logic directly inside the script.
+Each script should call functions from `R/` rather than containing all logic directly inside the script.
 
 Further details are available in:
 
-[Scripts documentation](scripts/README.md)
+[ Scripts documentation ](scripts/README.md)
 
-------------------------------------------------------------------------
+---
 
 ### Config
 
-The `config/` directory contains configuration files used to control
-paths, parameters, package requirements, model options, and analysis
-settings.
+The `config/` directory contains configuration files used to control paths, parameters, package requirements, model options, and analysis settings.
 
 Typical files include:
 
-``` text
+```text
 params.yml
 paths.yml
 packages.yml
@@ -284,46 +272,40 @@ packages.yml
 
 Further details are available in:
 
-[Config documentation](config/README.md)
+[ Config documentation ](config/README.md)
 
-------------------------------------------------------------------------
+---
 
 ### Metadata
 
-The `metadata/` directory contains information required to interpret,
-audit, and reproduce the analysis.
+The `metadata/` directory contains information required to interpret, audit, and reproduce the analysis.
 
 It may include:
 
-``` text
+```text
 data_sources.yml
 data_dictionary.csv
 schema.yml
 checksums.csv
 ```
 
-Raw data should not be stored in public GitHub repositories. Metadata
-should describe where the official data are stored, which version was
-used, and what transformations were applied.
+Raw data should not be stored in public GitHub repositories. Metadata should describe where the official data are stored, which version was used, and what transformations were applied.
 
 Further details are available in:
 
-[Metadata documentation](metadata/README.md)
+[ Metadata documentation ](metadata/README.md)
 
-------------------------------------------------------------------------
+---
 
 ### Data
 
-The `data/` directory is used only for synthetic, public, or local
-analytical inputs.
+The `data/` directory is used only for synthetic, public, or local analytical inputs.
 
-Institutional raw data should remain on authorized IMARPE servers or
-approved storage systems. This repository should not contain
-confidential, restricted, or sensitive datasets.
+Institutional raw data should remain on authorized IMARPE servers or approved storage systems. This repository should not contain confidential, restricted, or sensitive datasets.
 
 Recommended use:
 
-``` text
+```text
 data/example     = synthetic or public example data
 data/raw         = local raw data placeholder; usually ignored by Git
 data/interim     = intermediate processed objects
@@ -332,106 +314,93 @@ data/processed   = processed analytical inputs
 
 Further details are available in:
 
-[Data documentation](data/README.md)
+[ Data documentation ](data/README.md)
 
-------------------------------------------------------------------------
+---
 
 ### Inputs
 
-The `inputs/` directory contains model input files when the analysis
-requires external model formats such as `.dat`, `.ctl`, `.json`, `.csv`,
-or other structured input files.
+The `inputs/` directory contains model input files when the analysis requires external model formats such as `.dat`, `.ctl`, `.json`, `.csv`, or other structured input files.
 
-This directory is optional and should be used when the analytical
-workflow generates or consumes formal model input files.
+This directory is optional and should be used when the analytical workflow generates or consumes formal model input files.
 
-------------------------------------------------------------------------
+---
 
 ### Outputs
 
-The `outputs/` directory stores analytical products generated by the
-workflow.
+The `outputs/` directory stores analytical products generated by the workflow.
 
 Typical outputs include:
 
-``` text
+```text
 outputs/tables
 outputs/figures
 outputs/models
 outputs/logs
 ```
 
-Official outputs should be linked to a specific Git commit, data
-version, model configuration, and release tag.
+Official outputs should be linked to a specific Git commit, data version, model configuration, and release tag.
 
 Further details are available in:
 
-[Outputs documentation](outputs/README.md)
+[ Outputs documentation ](outputs/README.md)
 
-------------------------------------------------------------------------
+---
 
 ### Reports
 
-The `reports/` directory contains report-specific files, supporting
-Quarto documents, or additional technical summaries.
+The `reports/` directory contains report-specific files, supporting Quarto documents, or additional technical summaries.
 
 The main report is usually:
 
-``` text
+```text
 index.qmd
 ```
 
 The audit report is:
 
-``` text
+```text
 audit.qmd
 ```
 
-------------------------------------------------------------------------
+---
 
 ### Docs
 
-The `docs/` directory stores rendered documentation, technical notes,
-reports, and supporting materials.
+The `docs/` directory stores rendered documentation, technical notes, reports, and supporting materials.
 
-Rendered reports can be stored here when required for GitHub Pages,
-internal documentation, or review.
+Rendered reports can be stored here when required for GitHub Pages, internal documentation, or review.
 
 Further details are available in:
 
-[Docs documentation](docs/README.md)
+[ Docs documentation ](docs/README.md)
 
-------------------------------------------------------------------------
+---
 
 ### Source code
 
-The `src/` directory is reserved for compiled code, external model
-source files, or high-performance model components.
+The `src/` directory is reserved for compiled code, external model source files, or high-performance model components.
 
 Examples include:
 
-``` text
+```text
 .tpl
 .cpp
 .hpp
 .stan
 ```
 
-This directory is optional and should be used only when the analysis
-requires compiled or external model code.
+This directory is optional and should be used only when the analysis requires compiled or external model code.
 
-------------------------------------------------------------------------
+---
 
 ### Archive
 
-The `arc/` directory stores previous official runs, historical
-configurations, or archived results.
+The `arc/` directory stores previous official runs, historical configurations, or archived results.
 
-This directory should not be used as a substitute for Git tags or
-releases. It is mainly useful when legacy evaluation structures must be
-preserved for institutional continuity.
+This directory should not be used as a substitute for Git tags or releases. It is mainly useful when legacy evaluation structures must be preserved for institutional continuity.
 
-------------------------------------------------------------------------
+---
 
 ## Data policy
 
@@ -439,14 +408,13 @@ This repository should not store restricted or confidential raw data.
 
 Recommended separation:
 
-``` text
+```text
 Institutional server = official raw data
 GitHub = code, metadata, documentation, configuration, and reproducible workflow
 Outputs = derived tables, figures, reports, and model products
 ```
 
-When data are required to reproduce an analysis, the repository should
-include metadata describing:
+When data are required to reproduce an analysis, the repository should include metadata describing:
 
 - data source;
 - data owner;
@@ -456,7 +424,7 @@ include metadata describing:
 - transformation steps;
 - responsible analyst.
 
-------------------------------------------------------------------------
+---
 
 ## Reproducibility checklist
 
@@ -476,11 +444,11 @@ Before releasing an official result, verify that:
 - [ ] outputs are stored in `outputs/`;
 - [ ] the final version has a Git tag or release.
 
-------------------------------------------------------------------------
+---
 
 ## Recommended commands
 
-``` r
+```r
 # Restore package environment
 renv::restore()
 
@@ -495,7 +463,7 @@ quarto::quarto_render("index.qmd")
 quarto::quarto_render("audit.qmd")
 ```
 
-------------------------------------------------------------------------
+---
 
 ## Contributors
 
@@ -503,27 +471,22 @@ quarto::quarto_render("audit.qmd")
 - [erichdiaz](https://github.com/erichdiaz)
 - [ejosymart](https://github.com/ejosymart)
 
-Add or update contributors according to the specific repository created
-from this template.
+Add or update contributors according to the specific repository created from this template.
 
-------------------------------------------------------------------------
+---
 
 ## Contact
 
-**Dirección de Investigaciones del Subsistema Pelágico**\
+**Dirección de Investigaciones del Subsistema Pelágico**  
 **Instituto del Mar del Perú – IMARPE**
 
 - Website: [www.imarpe.gob.pe](http://www.imarpe.gob.pe)
 - Contact email: pending
 
-------------------------------------------------------------------------
+---
 
 ## Citation
 
-If this repository supports an official technical product, report,
-model, or publication, cite the corresponding release, report, or
-manuscript.
+If this repository supports an official technical product, report, model, or publication, cite the corresponding release, report, or manuscript.
 
-A `CITATION.cff` file should be added when the repository produces
-reusable scientific software, a formal analytical workflow, or a
-publication-associated output.
+A `CITATION.cff` file should be added when the repository produces reusable scientific software, a formal analytical workflow, or a publication-associated output.

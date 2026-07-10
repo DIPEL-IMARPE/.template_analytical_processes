@@ -1,0 +1,45 @@
+# R session files
+.Rhistory
+.RData
+.Ruserdata
+.Rproj.user/
+
+# renv local files
+renv/library/
+renv/staging/
+
+# targets local store
+_targets/
+_targets.Rout
+
+# Quarto/R Markdown outputs and cache
+*_cache/
+*_files/
+.quarto/
+*.knit.md
+*.utf8.md
+
+# Data: keep only placeholders and synthetic examples
+data/raw/*
+!data/raw/.gitkeep
+data/interim/*
+!data/interim/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+
+# Large or temporary output files
+outputs/logs/*
+!outputs/logs/.gitkeep
+*.rds
+*.RDS
+*.fst
+*.parquet
+*.feather
+*.qs
+*.zip
+*.7z
+
+# OS and IDE
+.DS_Store
+Thumbs.db
+.vscode/

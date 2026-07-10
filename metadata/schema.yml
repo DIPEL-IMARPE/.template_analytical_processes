@@ -1,0 +1,39 @@
+required_columns:
+  - year
+  - month
+  - species
+  - lat
+  - lon
+  - catch_tonnes
+  - effort_days
+
+optional_columns:
+  - cpue
+  - sst
+  - depth_m
+  - vessel_id
+  - trip_id
+
+rules:
+  year:
+    type: integer
+    min: 1900
+    max: 2100
+  month:
+    type: integer
+    min: 1
+    max: 12
+  lat:
+    type: numeric
+    min: -25
+    max: 0
+  lon:
+    type: numeric
+    min: -90
+    max: -65
+  catch_tonnes:
+    type: numeric
+    min: 0
+  effort_days:
+    type: numeric
+    min: 0

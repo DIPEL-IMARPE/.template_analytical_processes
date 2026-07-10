@@ -1,0 +1,10 @@
+# Institutional paths should be documented here or in metadata/data_sources.yml.
+# Do not store credentials or restricted data paths in public repositories.
+
+server:
+  raw_data_root: "//institutional-server/path/to/raw-data"
+  processed_data_root: "//institutional-server/path/to/processed-data"
+
+github:
+  outputs: "outputs"
+  metadata: "metadata"

@@ -1,0 +1,10 @@
+variable,type,unit,description
+year,integer,year,Observation year
+month,integer,month,Observation month
+species,character,none,Species or resource code
+lat,numeric,decimal_degrees,Latitude
+lon,numeric,decimal_degrees,Longitude
+catch_tonnes,numeric,tonnes,Catch in metric tonnes
+effort_days,numeric,days,Fishing effort in days
+cpue,numeric,tonnes_per_day,Nominal catch per unit effort
+sst,numeric,celsius,Sea surface temperature

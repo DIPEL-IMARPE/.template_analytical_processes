@@ -1,0 +1,12 @@
+# Document every input used by the analysis.
+# Do not include credentials or confidential data.
+
+sources:
+  - id: example_fishery_data
+    description: "Synthetic example dataset included only to demonstrate the workflow."
+    type: "synthetic"
+    path: "data/example/example_fishery_data.csv"
+    owner: "DIPEL-IMARPE"
+    date_extracted: "YYYY-MM-DD"
+    restrictions: "No restrictions; synthetic example data."
+    checksum: "see metadata/checksums.csv"

@@ -1,0 +1,13 @@
+core:
+  - targets
+  - tarchetypes
+  - tidyverse
+  - readr
+  - dplyr
+  - ggplot2
+  - yaml
+  - here
+  - fs
+  - cli
+  - quarto
+  - testthat

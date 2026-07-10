@@ -1,0 +1,19 @@
+project:
+  title: "Reproducible analytical process"
+  institution: "DIPEL-IMARPE"
+  repository_type: "analysis"
+  status: "template"
+
+analysis:
+  species: "example"
+  stock: "example_stock"
+  year_start: 2020
+  year_end: 2025
+  spatial_resolution: "example"
+  temporal_resolution: "annual"
+
+paths:
+  example_data: "data/example/example_fishery_data.csv"
+  tables: "outputs/tables"
+  figures: "outputs/figures"
+  models: "outputs/models"

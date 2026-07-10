@@ -1,0 +1,8 @@
+# Default technical owners for analytical workflows.
+# Replace with real GitHub users or teams.
+
+* @DIPEL-IMARPE/owners
+R/ @DIPEL-IMARPE/modeling
+scripts/ @DIPEL-IMARPE/modeling
+metadata/ @DIPEL-IMARPE/data-management
+reports/ @DIPEL-IMARPE/reports

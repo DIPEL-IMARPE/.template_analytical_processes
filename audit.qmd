@@ -1,0 +1,88 @@
+---
+title: "Audit report"
+subtitle: "Reproducibility and traceability record"
+author: "DIPEL-IMARPE"
+date: today
+format:
+  html:
+    toc: true
+    code-fold: true
+  docx:
+    toc: true
+execute:
+  warning: false
+  message: false
+---
+
+# Objective
+
+This audit document records the main elements needed to trace and reproduce the analysis.
+
+# Repository information
+
+```{r}
+#| label: git-info
+get_git_value <- function(args) {
+  tryCatch(system2("git", args, stdout = TRUE, stderr = TRUE)[1], error = function(e) NA_character_)
+}
+
+tibble::tibble(
+  field = c("git_commit", "git_branch", "repository_status"),
+  value = c(
+    get_git_value(c("rev-parse", "HEAD")),
+    get_git_value(c("rev-parse", "--abbrev-ref", "HEAD")),
+    get_git_value(c("status", "--short"))
+  )
+)
+```
+
+# Data sources
+
+```{r}
+#| label: data-sources
+if (file.exists("metadata/data_sources.yml")) {
+  yaml::read_yaml("metadata/data_sources.yml")
+} else {
+  "metadata/data_sources.yml not found"
+}
+```
+
+# Checksums
+
+```{r}
+#| label: checksums
+if (file.exists("metadata/checksums.csv")) {
+  readr::read_csv("metadata/checksums.csv", show_col_types = FALSE)
+} else {
+  "metadata/checksums.csv not found"
+}
+```
+
+# Pipeline status
+
+```{r}
+#| label: target-status
+if (requireNamespace("targets", quietly = TRUE)) {
+  targets::tar_meta(fields = c(name, command, time, bytes, format, repository))
+} else {
+  "targets package not installed"
+}
+```
+
+# R session
+
+```{r}
+#| label: session-info
+sessionInfo()
+```
+
+# Reproducibility checklist
+
+| Item | Status | Notes |
+|---|---|---|
+| Data sources documented | pending | See `metadata/data_sources.yml` |
+| Required columns documented | pending | See `metadata/schema.yml` |
+| Pipeline executed | pending | Run `targets::tar_make()` |
+| Report rendered | pending | Run `quarto render index.qmd` |
+| Audit rendered | pending | Run `quarto render audit.qmd` |
+| Release created | pending | Create a tag/release for official output |
